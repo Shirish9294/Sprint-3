@@ -1,0 +1,152 @@
+{% extends "homebase.html" %}
+{% load static %}
+{% block title %}
+    Your shopping cart
+{% endblock %}
+{% block content %}
+    <style>
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Ubuntu', sans-serif;
+            font-weight: normal;
+        }
+
+        a {
+            text-decoration: none;
+            color: #5993bb;
+        }
+
+        a:hover {
+            color: #77b6e2;
+        }
+
+        a.button, input[type="submit"] {
+            color: #fff;
+            background: #5993bb;
+            border-radius: 4px;
+            padding: 10px 20px;
+            font-size: 14px;
+            border: 0;
+        }
+
+        a.button.light {
+            color: #666;
+            background: #ededed;
+        }
+
+        .text-left {
+            text-align: left;
+        }
+
+        .text-right {
+            text-align: right;
+        }
+
+        table {
+            width: 100%;
+            border-spacing: 0;
+            border-collapse: collapse;
+        }
+
+        table th, table td {
+            text-align: left;
+            font-size: 14px;
+            padding: 3px;
+            margin: 0;
+        }
+
+        tbody tr:nth-child(odd) {
+            background: #efefef;
+        }
+
+        tbody tr.subtotal {
+            background: #ccc;
+        }
+
+        thead th, tbody tr.total {
+            background: #c6922e;
+            color: #fff;
+            font-weight: bold;
+        }
+
+        table.cart {
+            margin-bottom: 40px;
+        }
+
+        table.cart img {
+            width: 97px;
+        }
+
+        tbody td.num {
+            text-align: right;
+        }
+
+        td input[type="submit"] {
+            font-size: 12px;
+            padding: 4px 10px;
+        }
+    </style>
+    <div class="container">
+    <h3>Your shopping cart</h3>
+    <br>
+
+    <table class="cart">
+        <thead>
+        <tr>
+            <th>Product</th>
+            <th>Product Name</th>
+            <th>Quantity</th>
+            <th>Remove</th>
+            <th>Unit price</th>
+            <th>Price</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for item in cart %}
+            {% with product=item.product %}
+                <tr>
+                    <td>
+                        <a href="{{ product.get_absolute_url }}">
+                            <img src="
+
+                                    {% if product.image %}{{ product.image.url }}{% else %}{% static "img/no_image.png" %}{% endif %}"
+                                 alt="">
+                        </a>
+                    </td>
+                    <td>{{ product.name }}</td>
+                    <td>
+                        <form action="{% url "cart:cart_add" product.id %}" method="post" onchange="submit()">
+                            {{ item.update_quantity_form.quantity }}
+                            {{ item.update_quantity_form.override }}
+                            {% csrf_token %}
+                        </form>
+                    </td>
+                    <td>
+                        <form action="{% url "cart:cart_remove" product.id %}" method="post">
+                            <input type="submit" value="Remove" style="background: #c6922e">
+                            {% csrf_token %}
+                        </form>
+                    </td>
+                    <td class="num" style="text-align: left;">${{ item.price }}</td>
+                    <td class="num" style="text-align: left;">${{ item.total_price }}</td>
+                </tr>
+            {% endwith %}
+        {% endfor %}
+        <tr>
+            <td colspan="7">
+
+            </td>
+        </tr>
+        <tr class="total">
+            <td>Total Amount</td>
+            <td colspan="4"></td>
+            <td class="num" style="text-align: left;">${{ cart.get_total_price }}</td>
+        </tr>
+        </tbody>
+    </table>
+
+    <p class="text-right">
+        <a href="{% url "product_list" %}" class="button light">Continue shopping</a>
+        <a href="{% url "orders:order_create" %}" class="button" style="background: #c6922e">Checkout</a>
+    </p>
+    </div>
+{% endblock %}
