@@ -1,4 +1,6 @@
 from django.shortcuts import render, redirect
+
+from Apparel360 import settings
 from .models import OrderItem
 from .forms import OrderCreateForm
 from cart.cart import Cart
@@ -8,6 +10,8 @@ from django.shortcuts import get_object_or_404
 from .models import Order
 from django.http import HttpResponse
 from django.template.loader import render_to_string
+# import weasyprint
+# from weasyprint import HTML
 
 @staff_member_required
 def admin_order_pdf(request, order_id):
@@ -17,9 +21,6 @@ def admin_order_pdf(request, order_id):
     response = HttpResponse(content_type='application/pdf')
     response['Content-Disposition'] = 'filename=\
         "order_{}.pdf"'.format(order.id)
-    # weasyprint.HTML(string=html).write_pdf(response,
-    #     stylesheets=[weasyprint.CSS(
-    #         settings.STATIC_ROOT + 'css/pdf.css')])
     return response
 
 @staff_member_required

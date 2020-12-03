@@ -7,6 +7,7 @@ from orders.models import Order
 from django.core.mail import EmailMessage
 from django.template.loader import render_to_string
 from django.conf import settings
+from .tasks import payment_completed
 
 def payment_process(request):
     order_id = request.session.get('order_id')
