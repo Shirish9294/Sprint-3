@@ -29,6 +29,7 @@ urlpatterns = [
     path('user/', include('user.urls')),
     path('product/', include('product.urls')),
     path('ckeditor/', include('ckeditor_uploader.urls')),
+    path('coupons/', include('coupons.urls', namespace='coupons')),
     path('payment/', include('payment.urls', namespace='payment')),
     path('login/', UserViews.login_form, name='login_form'),
     path('logout/', UserViews.logout_func, name='logout_func'),
@@ -42,5 +43,6 @@ urlpatterns = [
     path('user_profile/', UserViews.user_update, name = 'user_profile'),
     path('update_user_information', UserViews.user_update, name = 'update_user_information'),
     path('dashboard', UserViews.dashboard, name='dashboard'),
+
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
