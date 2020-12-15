@@ -5,18 +5,17 @@
                 <div class="ht-left">
                     <div class="mail-service">
                         <i class=" fa fa-envelope"></i>
-                        3900-851-team-4@gmail.com
+                        django.website.testing@gmail.com
                     </div>
                     <div class="phone-service">
                         <i class=" fa fa-phone"></i>
-                        +1 402-406-2957
+                        402-406-2957
                     </div>
                 </div>
 
             <div class = "ht-right">
                 {% if user.id is not NONE %}
                         <a href="/user" class="login-panel"><i ><img src = '{{ request.session.user_image }}' style="height: 35px; width: 35px; border-radius: 10%"/></i>{{ user  }}</a>
-                        <a href="dashboard" class="login-panel" >Dashboard </a>
                         <a href="/logout" class="login-panel"><i class="fa fa-user"></i>Log-Out</a>
                     {% else %}
                         <a href="/login" class="login-panel"><i class="fa fa-user"></i>Login</a>
