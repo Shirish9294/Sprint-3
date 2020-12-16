@@ -133,6 +133,7 @@ class Apparel360_SignUp(unittest.TestCase):
 
         driver.get("http://127.0.0.1:8000")
         time.sleep(2)
+
     def tearDown(self):
         self.driver.close()
 
