@@ -3,7 +3,7 @@ import time
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 from selenium.common.exceptions import NoSuchElementException
-
+from selenium.webdriver.support.ui import Select
 class Apparel360_SignUp(unittest.TestCase):
 
     def setUp(self):
@@ -128,8 +128,8 @@ class Apparel360_SignUp(unittest.TestCase):
         continue_test = True
         time.sleep(2)
         if continue_test:
-              elem = driver.find_element_by_id("id_category").select()
-              elem.selectByVisibleTest("Sweaters") 
+              select = Select( driver.find_element_by_id("id_category"))
+              select.select_by_value('2')
               elem = driver.find_element_by_id("id_name")
               elem.send_keys("Womens Turtleneck Sweater")
               elem = driver.find_element_by_id("id_slug")
@@ -140,6 +140,15 @@ class Apparel360_SignUp(unittest.TestCase):
               elem.send_keys("35")
         elem = driver.find_element_by_xpath("//*[@id='product_form']/div/div/input[1]").click()
         time.sleep(4)
+
+        driver.get("http://127.0.0.1:8000/admin/product/product")
+
+        elem = driver.find_element_by_xpath("//*[@id='result_list']/tbody/tr[3]/th/a").click()
+        time.sleep(1)
+        elem = driver.find_element_by_xpath("//*[@id='product_form']/div/div/p/a").click()
+        time.sleep(2)
+        elem = driver.find_element_by_xpath("//*[@id='content']/form/div/input[2]").click()
+        time.sleep(2)
 
         driver.get("http://127.0.0.1:8000/admin/product/product")
         driver.get("http://127.0.0.1:8000/admin")
