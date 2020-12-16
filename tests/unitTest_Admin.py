@@ -122,28 +122,28 @@ class Apparel360_SignUp(unittest.TestCase):
         driver.get("http://127.0.0.1:8000/admin")
         time.sleep(5)
 
-        # driver.get("http://127.0.0.1:8000/admin/product/product")
-        # time.sleep(2)
-        # driver.get("http://127.0.0.1:8000/admin/product/product/add")
-        # continue_test = True
-        # time.sleep(2)
-        # if continue_test:
-        #       elem = driver.find_element_by_id("id_category").select()
-        #       elem.selectByVisibleTest("Sweaters") ;
-        #       elem = driver.find_element_by_id("id_name")
-        #       elem.send_keys("Womens Turtleneck Sweater")
-        #       elem = driver.find_element_by_id("id_slug")
-        #       elem.send_keys("sweater")
-        #       elem = driver.find_element_by_id("id_description")
-        #       elem.send_keys("45% Viscose, 35% Nylon, 20% Polyester")
-        #       elem = driver.find_element_by_id("id_price")
-        #       elem.send_keys("35")
-        # elem = driver.find_element_by_xpath("//*[@id='product_form']/div/div/input[1]").click()
-        # time.sleep(4)
-        #
-        # driver.get("http://127.0.0.1:8000/admin/product/product")
-        # driver.get("http://127.0.0.1:8000/admin")
-        # time.sleep(5)
+        driver.get("http://127.0.0.1:8000/admin/product/product")
+        time.sleep(2)
+        driver.get("http://127.0.0.1:8000/admin/product/product/add")
+        continue_test = True
+        time.sleep(2)
+        if continue_test:
+              elem = driver.find_element_by_id("id_category").select()
+              elem.selectByVisibleTest("Sweaters") 
+              elem = driver.find_element_by_id("id_name")
+              elem.send_keys("Womens Turtleneck Sweater")
+              elem = driver.find_element_by_id("id_slug")
+              elem.send_keys("sweater")
+              elem = driver.find_element_by_id("id_description")
+              elem.send_keys("45% Viscose, 35% Nylon, 20% Polyester")
+              elem = driver.find_element_by_id("id_price")
+              elem.send_keys("35")
+        elem = driver.find_element_by_xpath("//*[@id='product_form']/div/div/input[1]").click()
+        time.sleep(4)
+
+        driver.get("http://127.0.0.1:8000/admin/product/product")
+        driver.get("http://127.0.0.1:8000/admin")
+        time.sleep(5)
         
 
     def tearDown(self):

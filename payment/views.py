@@ -7,7 +7,7 @@ from orders.models import Order
 from django.core.mail import EmailMessage
 from django.template.loader import render_to_string
 from django.conf import settings
-from .tasks import payment_completed
+# from .tasks import payment_completed
 
 def payment_process(request):
     order_id = request.session.get('order_id')
@@ -31,13 +31,13 @@ def payment_process(request):
             # store the unique transaction id
             order.braintree_id = result.transaction.id
             order.save()
-            # create invoice e-mail
-            subject = 'Apparel360 - Invoice no. {}'.format(order.id)
-            message = 'Please, find attached the invoice for your recent purchase.'
-            email = EmailMessage(subject,
-                                 message,
-                                 'django.website.testing@gmail.com',
-                                 [order.email]).send(fail_silently=True)
+            # # create invoice e-mail
+            # subject = 'Apparel360 - Invoice no. {}'.format(order.id)
+            # message = 'Please, find attached the invoice for your recent purchase.'
+            # email = EmailMessage(subject,
+            #                      message,
+            #                      'django.website.testing@gmail.com',
+            #                      [order.email]).send(fail_silently=True)
 
             return redirect('payment:done')
         else:
